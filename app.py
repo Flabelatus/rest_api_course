@@ -15,12 +15,6 @@ app.secret_key = 'jose'
 api = Api(app)
 
 
-# In order to have the SQLAlchemy creating the database and tables
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
-
 # Change the authentication end point from /auth to /login
 # This particular modification should happen before the jwt is
 # created.
