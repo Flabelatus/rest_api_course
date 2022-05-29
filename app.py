@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_jwt import JWT, timedelta  # For authentication
 from flask_restful import Api
@@ -9,11 +11,10 @@ from resources.user import UserRegister
 from security import authenticate, identity
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL_2', 'sqlite:///user_database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jose'
 api = Api(app)
-
 
 # Change the authentication end point from /auth to /login
 # This particular modification should happen before the jwt is
