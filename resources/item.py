@@ -5,6 +5,8 @@ from models.item_model import ItemModel
 
 
 class Item(Resource):
+
+    # Parser as the class attribute
     parser = reqparse.RequestParser()
     parser.add_argument('price',
                         type=float,
